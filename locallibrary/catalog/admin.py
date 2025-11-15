@@ -1,8 +1,9 @@
 from django.contrib import admin
 
+from django import forms
 # Register your models here.
 from .models import Author, Genre, Book, BookInstance
-
+from .models import Language
 #admin.site.register(Book)
 #admin.site.register(Author)
 admin.site.register(Genre)
@@ -29,7 +30,7 @@ class BookAdmin(admin.ModelAdmin):
 
 admin.site.register(Book, BookAdmin)
 # Register the Admin classes for BookInstance using the decorator
-
+admin.site.register(Language)
 @admin.register(BookInstance)
 class BookInstanceAdmin(admin.ModelAdmin):
     list_display = ('book', 'status', 'borrower', 'due_back', 'id')
@@ -43,3 +44,4 @@ class BookInstanceAdmin(admin.ModelAdmin):
             'fields': ('status', 'due_back', 'borrower')
         }),
     )
+

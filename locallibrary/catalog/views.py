@@ -143,3 +143,29 @@ class BookUpdate(UpdateView):
 class BookDelete(DeleteView):
     model = Book
     success_url = reverse_lazy('books')
+from django.shortcuts import render, redirect
+
+from django.shortcuts import render, redirect
+from .forms import BookForm, AuthorForm
+
+def create_book(request):
+    if request.method == 'POST':
+        form = BookForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('index')  # вернуться на главную
+    else:
+        form = BookForm()
+
+    return render(request, 'catalog/create_book.html', {'form': form})
+
+def create_author(request):
+    if request.method == 'POST':
+        form = AuthorForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('index')  # вернуться на главную
+    else:
+        form = AuthorForm()
+
+    return render(request, 'catalog/author_form.html', {'form': form})

@@ -9,6 +9,13 @@
  <h2>Dynamic content</h2>
 
 <p>The library has the following record counts:</p>
+ {% if user.is_superuser %}
+
+    <div>
+      <a href="{% url 'create_book' %}" class="btn btn-primary">Добавить книгу</a>
+      <a href="{% url 'create_author' %}" class="btn btn-success">Добавить автора</a>
+    </div>
+  {% endif %}
 <ul>
   <li><strong>Books:</strong> {{ num_books }}</li>
   <li><strong>Copies:</strong> {{ num_instances }}</li>
